@@ -1,8 +1,2 @@
-```
-npm install
-npm run dev
-```
-
-```
-npm run deploy
-```
+#Under development
+#Hono on cloudfare-workers made Backend of Blogs application deployed on cloudfare workers.
