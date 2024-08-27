@@ -104,12 +104,22 @@ paperRouter.get('/bulk', async(c) => {
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate())
 
-    const papers = await prisma.post.findMany();
+    const papers = await prisma.post.findMany({
+        select: {
+            content: true,
+            title: true,
+            id: true,
+            author: {
+                select: {
+                    name: true
+                }
+            }
+        }
+    });
    
     return c.json({
         papers
     });
-
 })    
   
 
@@ -122,6 +132,17 @@ paperRouter.get('/:id', async(c) => {
         where: {
             id : Number(id),
         },
+        select: {
+            id: true,
+            title: true,
+            content: true,
+            author: {
+                select: {
+                    name: true
+                }
+            }
+        }
+
     })
     return c.json({
         paper
