@@ -42,9 +42,7 @@ userRouter.post('/signup', async (c) => {
       const token = await sign({ id: user.id }, c.env.JWT_SECRET)
       console.log("id:" + user.id);
       // Return the token in the response
-      return c.json({
-        jwt: token
-      })
+      return c.json(token)
     } catch (error) {
       // Handle any errors that occurred during the signup process
       console.error("Error during signup:", error);
@@ -93,9 +91,7 @@ try {
     const jwt = await sign({ id: user.id }, c.env.JWT_SECRET);
 
     // Return the JWT token in the response
-    return c.json({
-    jwt
-    });
+    return c.json(jwt);
 } catch (error) {
     // Handle any errors that occurred during the sign-in process
     console.error("Error during sign-in:", error);
